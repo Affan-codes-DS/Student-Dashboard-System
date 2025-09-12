@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - EduDashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="student-dashboard">
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>EduDashboard</h2>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active" data-section="overview">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Overview</span>
+                    </li>
+                    <li class="nav-item" data-section="academic">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Academic</span>
+                    </li>
+                    <li class="nav-item" data-section="attendance">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Attendance</span>
+                    </li>
+                    <li class="nav-item" data-section="notices">
+                        <i class="fas fa-bell"></i>
+                        <span>Notices</span>
+                    </li>
+                    <li class="nav-item" data-section="profile">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="sidebar-toggle" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 id="pageTitle">Student Overview</h1>
+                </div>
+                <div class="header-right">
+                    <div class="theme-toggle">
+                        <button onclick="toggleTheme()" class="theme-btn">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                    <div class="user-info">
+                        <i class="fas fa-user-graduate"></i>
+                        <span id="studentName">Student</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Overview Section -->
+            <section id="overview" class="content-section active">
+                <div class="welcome-card">
+                    <div class="welcome-content">
+                        <h2>Welcome back, <span id="welcomeName">Student</span>!</h2>
+                        <p>Here's your academic overview for this semester</p>
+                    </div>
+                    <div class="welcome-avatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="overviewCgpa">0.00</h3>
+                            <p>CGPA</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="overviewAttendance">0%</h3>
+                            <p>Attendance</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="overviewNotices">0</h3>
+                            <p>New Notices</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="overviewRank">-</h3>
+                            <p>Class Rank</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Recent Notices</h3>
+                        <div id="recentNotices" class="notices-preview">
+                            <!-- Recent notices will be populated here -->
+                        </div>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Quick Actions</h3>
+                        <div class="quick-actions">
+                            <button class="action-btn" onclick="showSection('academic')">
+                                <i class="fas fa-chart-line"></i>
+                                View Semester
+                            </button>
+                            <button class="action-btn" onclick="showSection('attendance')">
+                                <i class="fas fa-calendar-check"></i>
+                                Check Attendance
+                            </button>
+                            <button class="action-btn" onclick="downloadReport()">
+                                <i class="fas fa-download"></i>
+                                Download Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Academic Section -->
+            <section id="academic" class="content-section">
+                <div class="section-header">
+                    <h2>Academic Performance</h2>
+                    <select id="semesterSelect" class="btn btn-secondary">
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+                        <option value="7">Semester 7</option>
+                        <option value="8">Semester 8</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="downloadReport()">
+                        <i class="fas fa-download"></i>
+                        Download Report
+                    </button>
+                </div>
+
+                <div class="academic-grid">
+                    <div class="chart-card">
+                        <h3>Subject-wise Performance</h3>
+                        <canvas id="subjectChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Semester Trend (SGPA)</h3>
+                        <canvas id="semesterTrendChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="marks-table-container">
+                    <h3>Detailed Marks</h3>
+                    <table class="data-table" id="marksTable">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Marks Obtained</th>
+                                <th>Total Marks</th>
+                                <th>Percentage</th>
+                                <th>Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody id="marksTableBody">
+                            <!-- Marks will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Attendance Section -->
+            <section id="attendance" class="content-section">
+                <div class="section-header">
+                    <h2>Attendance Records</h2>
+                </div>
+
+                <div class="attendance-overview">
+                    <div class="attendance-card">
+                        <h3>Overall Attendance</h3>
+                        <div class="attendance-circle">
+                            <div class="circle-progress" id="attendanceCircle">
+                                <span id="attendancePercentage">0%</span>
+                            </div>
+                        </div>
+                        <p>Present: <span id="presentDays">0</span> days</p>
+                        <p>Absent: <span id="absentDays">0</span> days</p>
+                    </div>
+                    <div class="attendance-chart">
+                        <h3>Monthly Attendance</h3>
+                        <canvas id="attendanceChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="attendance-table-container">
+                    <h3>Daily Attendance</h3>
+                    <table class="data-table" id="attendanceTable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Subject</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceTableBody">
+                            <!-- Attendance records will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Notices Section -->
+            <section id="notices" class="content-section">
+                <div class="section-header">
+                    <h2>Notices & Announcements</h2>
+                </div>
+
+                <div class="notices-list" id="studentNoticesList">
+                    <!-- Notices will be populated here -->
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile" class="content-section">
+                <div class="section-header">
+                    <h2>Student Profile</h2>
+                    <button class="btn btn-secondary" onclick="editProfile()">
+                        <i class="fas fa-edit"></i>
+                        Edit Profile
+                    </button>
+                </div>
+
+                <div class="profile-container">
+                    <div class="profile-card">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h3 id="profileName">Student Name</h3>
+                            <p id="profileId">Student ID: -</p>
+                            <p id="profileClass">Semester: -</p>
+                            <p id="profileEmail">Email: -</p>
+                            <p id="profilePhone">Phone: -</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-details">
+                        <h3>Academic Information</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>Current Semester:</label>
+                                <span id="infoClass">-</span>
+                            </div>
+                            <div class="info-item">
+                                <label>CGPA:</label>
+                                <span id="infoCgpa">-</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Attendance:</label>
+                                <span id="infoAttendance">-</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Semester Rank:</label>
+                                <span id="infoRank">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

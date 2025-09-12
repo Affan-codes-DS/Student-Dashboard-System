@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login - EduDashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h1>EduDashboard</h1>
+                </div>
+                <h2>Student Login</h2>
+                <p>Enter your student ID to access your dashboard</p>
+            </div>
+
+            <form class="login-form" id="studentLoginForm">
+                <div class="form-group">
+                    <label for="studentId">Student ID / Roll Number</label>
+                    <div class="input-group">
+                        <i class="fas fa-id-card"></i>
+                        <input type="text" id="studentId" name="studentId" placeholder="Enter your student ID" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Access My Dashboard
+                </button>
+
+                <div class="login-footer">
+                    <a href="index.html" class="back-link">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Role Selection
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="login-info">
+            <h3>Student Portal Features</h3>
+            <ul>
+                <li><i class="fas fa-chart-line"></i> View Academic Performance</li>
+                <li><i class="fas fa-calendar-check"></i> Check Attendance Records</li>
+                <li><i class="fas fa-bell"></i> Read Important Notices</li>
+                <li><i class="fas fa-download"></i> Download Reports</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

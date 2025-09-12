@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Role Selection</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="landing-container">
+        <div class="landing-header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>EduDashboard</h1>
+            </div>
+            <p class="tagline">Professional Student Management System</p>
+        </div>
+
+        <div class="role-selection">
+            <h2>Choose Your Role</h2>
+            <div class="role-cards">
+                <div class="role-card admin-card" onclick="selectRole('admin')">
+                    <div class="card-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Administrator</h3>
+                    <p>Manage student data, add records, and send notices</p>
+                    <div class="card-features">
+                        <span><i class="fas fa-check"></i> Student Management</span>
+                        <span><i class="fas fa-check"></i> Data Analytics</span>
+                        <span><i class="fas fa-check"></i> Notice Board</span>
+                    </div>
+                    <button class="role-btn">Access Admin Panel</button>
+                </div>
+
+                <div class="role-card student-card" onclick="selectRole('student')">
+                    <div class="card-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Student</h3>
+                    <p>View your academic progress, attendance, and notices</p>
+                    <div class="card-features">
+                        <span><i class="fas fa-check"></i> Semester Reports</span>
+                        <span><i class="fas fa-check"></i> Attendance Tracking</span>
+                        <span><i class="fas fa-check"></i> Notices & Updates</span>
+                    </div>
+                    <button class="role-btn">Access Student Portal</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="landing-footer">
+            <p>&copy; 2024 EduDashboard. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

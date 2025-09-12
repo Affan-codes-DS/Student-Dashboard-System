@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - EduDashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-dashboard">
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>EduDashboard</h2>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </li>
+                    <li class="nav-item" data-section="students">
+                        <i class="fas fa-users"></i>
+                        <span>Students</span>
+                    </li>
+                    <li class="nav-item" data-section="notices">
+                        <i class="fas fa-bell"></i>
+                        <span>Notices</span>
+                    </li>
+                    <li class="nav-item" data-section="analytics">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Analytics</span>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="sidebar-toggle" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 id="pageTitle">Dashboard Overview</h1>
+                </div>
+                <div class="header-right">
+                    <div class="theme-toggle">
+                        <button onclick="toggleTheme()" class="theme-btn">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                    <div class="user-info">
+                        <i class="fas fa-user-shield"></i>
+                        <span>Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalStudents">0</h3>
+                            <p>Total Students</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalClasses">0</h3>
+                            <p>Active Semesters</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalNotices">0</h3>
+                            <p>Active Notices</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="avgAttendance">0%</h3>
+                            <p>Avg Attendance</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Recent Students</h3>
+                        <div id="recentStudents" class="recent-list">
+                            <!-- Recent students will be populated here -->
+                        </div>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Quick Actions</h3>
+                        <div class="quick-actions">
+                            <button class="action-btn" onclick="showSection('students')">
+                                <i class="fas fa-user-plus"></i>
+                                Add Student
+                            </button>
+                            <button class="action-btn" onclick="showSection('notices')">
+                                <i class="fas fa-bell"></i>
+                                Send Notice
+                            </button>
+                            <button class="action-btn" onclick="exportData()">
+                                <i class="fas fa-download"></i>
+                                Export Data
+                            </button>
+                            <button class="action-btn" onclick="restoreSampleData()">
+                                <i class="fas fa-rotate"></i>
+                                Restore Sample Data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Students Section -->
+            <section id="students" class="content-section">
+                <div class="section-header">
+                    <h2>Student Management</h2>
+                    <button class="btn btn-primary" onclick="openStudentModal()">
+                        <i class="fas fa-plus"></i>
+                        Add Student
+                    </button>
+                </div>
+
+                <div class="filters">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="studentSearch" placeholder="Search students...">
+                    </div>
+                    <select id="classFilter">
+                        <option value="">All Semesters</option>
+                    </select>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table" id="studentsTable">
+                        <thead>
+                            <tr>
+                                <th onclick="sortTable('name')">Name <i class="fas fa-sort"></i></th>
+                                <th onclick="sortTable('studentId')">Student ID <i class="fas fa-sort"></i></th>
+                                <th onclick="sortTable('class')">Semester <i class="fas fa-sort"></i></th>
+                                <th onclick="sortTable('attendance')">Attendance <i class="fas fa-sort"></i></th>
+                                <th onclick="sortTable('cgpa')">CGPA <i class="fas fa-sort"></i></th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody">
+                            <!-- Students will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Notices Section -->
+            <section id="notices" class="content-section">
+                <div class="section-header">
+                    <h2>Notice Management</h2>
+                    <button class="btn btn-primary" onclick="openNoticeModal()">
+                        <i class="fas fa-plus"></i>
+                        Send Notice
+                    </button>
+                </div>
+
+                <div class="notices-list" id="noticesList">
+                    <!-- Notices will be populated here -->
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="content-section">
+                <div class="section-header">
+                    <h2>Analytics Dashboard</h2>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="chart-card">
+                        <h3>Semester Distribution</h3>
+                        <canvas id="classChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Attendance Overview</h3>
+                        <canvas id="attendanceChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Student Modal -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="studentModalTitle">Add Student</h3>
+                <button class="close-btn" onclick="closeStudentModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="studentForm" class="modal-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="studentName">Full Name</label>
+                        <input type="text" id="studentName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentIdInput">Student ID</label>
+                        <input type="text" id="studentIdInput" name="studentId" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="studentClass">Semester</label>
+                        <select id="studentClass" name="class" required>
+                            <option value="">Select Semester</option>
+                            <option value="Sem 1">Sem 1</option>
+                            <option value="Sem 2">Sem 2</option>
+                            <option value="Sem 3">Sem 3</option>
+                            <option value="Sem 4">Sem 4</option>
+                            <option value="Sem 5">Sem 5</option>
+                            <option value="Sem 6">Sem 6</option>
+                            <option value="Sem 7">Sem 7</option>
+                            <option value="Sem 8">Sem 8</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentEmail">Email</label>
+                        <input type="email" id="studentEmail" name="email">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="studentPhone">Phone</label>
+                        <input type="tel" id="studentPhone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="studentAddress">Address</label>
+                        <input type="text" id="studentAddress" name="address">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="studentAttendance">Attendance %</label>
+                        <input type="number" id="studentAttendance" name="attendance" min="0" max="100" value="85">
+                    </div>
+                    <div class="form-group">
+                        <label for="studentCgpa">CGPA (0.0 - 10.0)</label>
+                        <input type="number" id="studentCgpa" name="cgpa" min="0" max="10" step="0.01" value="7.50">
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeStudentModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notice Modal -->
+    <div id="noticeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Send Notice</h3>
+                <button class="close-btn" onclick="closeNoticeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="noticeForm" class="modal-form">
+                <div class="form-group">
+                    <label for="noticeTitle">Notice Title</label>
+                    <input type="text" id="noticeTitle" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="noticeMessage">Message</label>
+                    <textarea id="noticeMessage" name="message" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="noticeTarget">Target Audience</label>
+                    <select id="noticeTarget" name="target" required>
+                        <option value="all">All Students</option>
+                        <option value="class">Specific Semester</option>
+                        <option value="individual">Individual Student</option>
+                    </select>
+                </div>
+                <div class="form-group" id="targetClassGroup" style="display: none;">
+                    <label for="targetClass">Select Semester</label>
+                    <select id="targetClass" name="targetClass">
+                        <option value="">Select Semester</option>
+                    </select>
+                </div>
+                <div class="form-group" id="targetStudentGroup" style="display: none;">
+                    <label for="targetStudent">Select Student</label>
+                    <select id="targetStudent" name="targetStudent">
+                        <option value="">Select Student</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeNoticeModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Send Notice</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
