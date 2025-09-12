@@ -1,0 +1,139 @@
+{
+  "students": [
+    {
+      "id": "STU001",
+      "name": "Lav Kumar",
+      "class": "Grade 10",
+      "email": "lav.kumar@email.com",
+      "phone": "+1234567890",
+      "address": "123 Main St, City",
+      "attendance": 92,
+      "average": 85,
+      "marks": {
+        "Mathematics": { "obtained": 85, "total": 100, "grade": "A" },
+        "English": { "obtained": 78, "total": 100, "grade": "B+" },
+        "Science": { "obtained": 88, "total": 100, "grade": "A" },
+        "History": { "obtained": 82, "total": 100, "grade": "A-" },
+        "Geography": { "obtained": 90, "total": 100, "grade": "A+" }
+      }
+    },
+    {
+      "id": "STU002",
+      "name": "Priyam",
+      "class": "Grade 9",
+      "email": "priyam@email.com",
+      "phone": "+1234567891",
+      "address": "456 Oak Ave, City",
+      "attendance": 88,
+      "average": 78,
+      "marks": {
+        "Mathematics": { "obtained": 75, "total": 100, "grade": "B+" },
+        "English": { "obtained": 82, "total": 100, "grade": "A-" },
+        "Science": { "obtained": 79, "total": 100, "grade": "B+" },
+        "History": { "obtained": 76, "total": 100, "grade": "B+" },
+        "Geography": { "obtained": 80, "total": 100, "grade": "A-" }
+      }
+    },
+    {
+      "id": "STU003",
+      "name": "Piyush",
+      "class": "Sem 8",
+      "email": "piyush@email.com",
+      "phone": "+1234567892",
+      "address": "789 Pine St, City",
+      "attendance": 95,
+      "average": 92,
+      "marks": {
+        "Mathematics": { "obtained": 95, "total": 100, "grade": "A+" },
+        "English": { "obtained": 88, "total": 100, "grade": "A" },
+        "Science": { "obtained": 94, "total": 100, "grade": "A+" },
+        "History": { "obtained": 91, "total": 100, "grade": "A" },
+        "Geography": { "obtained": 92, "total": 100, "grade": "A+" }
+      }
+    },
+    {
+      "id": "STU004",
+      "name": "Sarah Wilson",
+      "class": "Sem 5",
+      "email": "sarah.wilson@email.com",
+      "phone": "+1234567893",
+      "address": "321 Elm St, City",
+      "attendance": 90,
+      "average": 88,
+      "marks": {
+        "Mathematics": { "obtained": 90, "total": 100, "grade": "A" },
+        "English": { "obtained": 85, "total": 100, "grade": "A" },
+        "Science": { "obtained": 89, "total": 100, "grade": "A" },
+        "History": { "obtained": 87, "total": 100, "grade": "A" },
+        "Geography": { "obtained": 91, "total": 100, "grade": "A" }
+      }
+    },
+    {
+      "id": "STU005",
+      "name": "David Brown",
+      "class": "Sem 7",
+      "email": "david.brown@email.com",
+      "phone": "+1234567894",
+      "address": "654 Maple Ave, City",
+      "attendance": 85,
+      "average": 82,
+      "marks": {
+        "Mathematics": { "obtained": 80, "total": 100, "grade": "A-" },
+        "English": { "obtained": 85, "total": 100, "grade": "A" },
+        "Science": { "obtained": 83, "total": 100, "grade": "A-" },
+        "History": { "obtained": 81, "total": 100, "grade": "A-" },
+        "Geography": { "obtained": 84, "total": 100, "grade": "A-" }
+      }
+    }
+  ],
+  "notices": [
+    {
+      "id": "NOT001",
+      "title": "Mid-term Examination Schedule",
+      "message": "The mid-term examinations will be conducted from March 15-20, 2024. Please prepare accordingly and bring your student ID cards.",
+      "target": "all",
+      "targetClass": "",
+      "targetStudent": "",
+      "date": "2024-03-01T10:00:00.000Z",
+      "author": "Admin"
+    },
+    {
+      "id": "NOT002",
+      "title": "Parent-Teacher Meeting",
+      "message": "Parent-teacher meetings are scheduled for March 25, 2024. Please contact the school office to book your slot. Meetings will be held from 9 AM to 4 PM.",
+      "target": "all",
+      "targetClass": "",
+      "targetStudent": "",
+      "date": "2024-02-28T14:30:00.000Z",
+      "author": "Admin"
+    },
+    {
+      "id": "NOT003",
+      "title": "Grade 10 Science Fair",
+      "message": "The annual science fair for Grade 10 students will be held on March 30, 2024. All students are encouraged to participate and showcase their projects.",
+      "target": "class",
+      "targetClass": "Grade 10",
+      "targetStudent": "",
+      "date": "2024-03-05T09:00:00.000Z",
+      "author": "Admin"
+    },
+    {
+      "id": "NOT004",
+      "title": "Library Hours Extended",
+      "message": "The school library will now be open until 6 PM on weekdays to help students with their studies and research projects.",
+      "target": "all",
+      "targetClass": "",
+      "targetStudent": "",
+      "date": "2024-03-03T16:00:00.000Z",
+      "author": "Admin"
+    }
+  ],
+  "classes": [
+    "Sem 1", "Sem 2", "Sem 3", "Sem 4",
+    "Sem 4", "Sem 6", "Sem 7", "Sem 8"
+  ],
+  "subjects": [
+    "Mathematics", "English", "Science", "History", "Geography",
+    "Physics", "Chemistry", "Biology", "Computer Science", "Art"
+  ]
+}
